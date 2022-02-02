@@ -94,7 +94,7 @@ public class WeightAddon extends PetAddon {
 
     private void handlePetWeight (PetUser user) {
         int weight = 0;
-        Player player = ((Player) user.getPlayer());
+        Player player = user.getPlayer();
 
         if (user.getHatPets().isEmpty()) {
             player.removePotionEffect(PotionEffectType.SLOW);
