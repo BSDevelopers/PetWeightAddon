@@ -76,7 +76,7 @@ public class WeightAddon extends PetAddon {
 
     @Override
     public double getVersion() {
-        return 0.1;
+        return 0.2;
     }
 
     @Override
