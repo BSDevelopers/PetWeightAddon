@@ -16,13 +16,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>apache.snapshots</id>
-            <url>https://repository.apache.org/snapshots/</url>
-        </pluginRepository>
-    </pluginRepositories>
-
     <build>
         <defaultGoal>clean install</defaultGoal>
         <finalName>${project.artifactId}</finalName>
@@ -36,7 +29,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.3.0-SNAPSHOT</version>
+                <version>3.3.0</version>
                 <configuration>
                     <minimizeJar>true</minimizeJar>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
@@ -64,8 +57,8 @@
 
     <repositories>
         <repository>
-            <id>bs-repo</id>
-            <url>http://ci.pluginwiki.us/plugin/repository/everything/</url>
+            <id>bs-public</id>
+            <url>https://repo.pluginwiki.us/repository/maven-releases/</url>
         </repository>
         <repository>
             <id>spigot-repo</id>
@@ -83,13 +76,13 @@
         <dependency>
             <groupId>simplepets.brainsynder</groupId>
             <artifactId>API</artifactId>
-            <version>5.0-BUILD-121</version>
+            <version>5.0-BUILD-163</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>lib.brainsynder</groupId>
             <artifactId>API</artifactId>
-            <version>B95</version>
+            <version>B101</version>
         </dependency>
     </dependencies>
 </project>

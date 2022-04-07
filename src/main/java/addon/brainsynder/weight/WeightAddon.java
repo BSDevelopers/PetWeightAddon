@@ -1,6 +1,5 @@
 package addon.brainsynder.weight;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
@@ -12,7 +11,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import simplepets.brainsynder.addon.AddonConfig;
-import simplepets.brainsynder.addon.PetAddon;
+import simplepets.brainsynder.addon.PetModule;
 import simplepets.brainsynder.api.Namespace;
 import simplepets.brainsynder.api.event.entity.PostPetHatEvent;
 import simplepets.brainsynder.api.pet.PetType;
@@ -21,12 +20,11 @@ import simplepets.brainsynder.api.pet.annotations.PetCustomization;
 import simplepets.brainsynder.api.plugin.SimplePets;
 import simplepets.brainsynder.api.user.PetUser;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 @Namespace(namespace = "PetWeight")
-public class WeightAddon extends PetAddon {
+public class WeightAddon extends PetModule {
     private NamespacedKey WEIGHT;
     private boolean stacked = false;
     private int maxWeight = 5;
@@ -72,24 +70,6 @@ public class WeightAddon extends PetAddon {
                 player.getPersistentDataContainer().remove(WEIGHT);
             }
         });
-    }
-
-    @Override
-    public double getVersion() {
-        return 0.2;
-    }
-
-    @Override
-    public String getAuthor() {
-        return "brainsynder";
-    }
-
-    @Override
-    public List<String> getDescription() {
-        return Lists.newArrayList(
-                "&7This addon makes it so pets have",
-                "&7weight when it is on the players head"
-        );
     }
 
     private void handlePetWeight (PetUser user) {
