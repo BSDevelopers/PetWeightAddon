@@ -28,6 +28,7 @@ public class WeightAddon extends PetModule {
     private NamespacedKey WEIGHT;
     private boolean stacked = false;
     private int maxWeight = 5;
+    private PotionEffectType potionType;
 
     private Map<PetWeight, Integer> weightMap;
 
@@ -56,6 +57,16 @@ public class WeightAddon extends PetModule {
         if (weightMap == null) weightMap = Maps.newHashMap();
         WEIGHT = new NamespacedKey(SimplePets.getPlugin(), "weight");
 
+        try {
+            potionType = PotionEffectType.getByName("SLOW");
+            if (potionType == null) potionType = PotionEffectType.getByName("SLOWNESS");
+        }catch (Exception e) {
+            potionType = PotionEffectType.getByName("SLOWNESS");
+        }
+
+        if (potionType == null) potionType = PotionEffectType.getByKey(NamespacedKey.fromString("slowness"));
+
+
         Bukkit.getOnlinePlayers().forEach(player -> {
             SimplePets.getUserManager().getPetUser(player).ifPresent(this::handlePetWeight);
         });
@@ -66,7 +77,7 @@ public class WeightAddon extends PetModule {
         WEIGHT = new NamespacedKey(SimplePets.getPlugin(), "weight");
         Bukkit.getOnlinePlayers().forEach(player -> {
             if (player.getPersistentDataContainer().has(WEIGHT, PersistentDataType.INTEGER)) {
-                player.removePotionEffect(PotionEffectType.SLOW);
+                player.removePotionEffect(potionType);
                 player.getPersistentDataContainer().remove(WEIGHT);
             }
         });
@@ -77,7 +88,7 @@ public class WeightAddon extends PetModule {
         Player player = user.getPlayer();
 
         if (user.getHatPets().isEmpty()) {
-            player.removePotionEffect(PotionEffectType.SLOW);
+            player.removePotionEffect(potionType);
             player.getPersistentDataContainer().remove(WEIGHT);
             return;
         }
@@ -97,7 +108,7 @@ public class WeightAddon extends PetModule {
         }
 
         if (weight <= 0) { // No pets on the players head, remove effects
-            player.removePotionEffect(PotionEffectType.SLOW);
+            player.removePotionEffect(potionType);
             player.getPersistentDataContainer().remove(WEIGHT);
             return;
         }
@@ -105,14 +116,14 @@ public class WeightAddon extends PetModule {
         if (weight > maxWeight) weight = maxWeight;
 
         player.getPersistentDataContainer().set(WEIGHT, PersistentDataType.INTEGER, weight);
-        PotionEffect effect = new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, (weight - 1), false, false);
+        PotionEffect effect = new PotionEffect(potionType, Integer.MAX_VALUE, (weight - 1), false, false);
         player.addPotionEffect(effect, true);
     }
 
     @EventHandler
     public void onJoin (PlayerJoinEvent event) {
         if (event.getPlayer().getPersistentDataContainer().has(WEIGHT, PersistentDataType.INTEGER)) {
-            event.getPlayer().removePotionEffect(PotionEffectType.SLOW);
+            event.getPlayer().removePotionEffect(potionType);
             event.getPlayer().getPersistentDataContainer().remove(WEIGHT);
         }
     }

@@ -11,8 +11,8 @@
 
 
     <properties>
-        <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -57,8 +57,8 @@
 
     <repositories>
         <repository>
-            <id>bs-public</id>
-            <url>https://repo.pluginwiki.us/repository/maven-releases/</url>
+            <id>bs-repo-releases</id>
+            <url>https://repo.bsdevelopment.org/releases</url>
         </repository>
         <repository>
             <id>spigot-repo</id>
@@ -70,19 +70,19 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.16.5-R0.1-SNAPSHOT</version>
+            <version>1.21-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>simplepets.brainsynder</groupId>
             <artifactId>API</artifactId>
-            <version>5.0-BUILD-163</version>
+            <version>5.0-BUILD-242</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>lib.brainsynder</groupId>
             <artifactId>API</artifactId>
-            <version>B101</version>
+            <version>B130</version>
         </dependency>
     </dependencies>
 </project>
