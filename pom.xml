@@ -76,7 +76,7 @@
         <dependency>
             <groupId>simplepets.brainsynder</groupId>
             <artifactId>API</artifactId>
-            <version>5.0-BUILD-242</version>
+            <version>5.0-BUILD-286</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
